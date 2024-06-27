@@ -1,0 +1,27 @@
+---
+- name: Install/Enable Apache Web Server & Download/Copy index.html
+  hosts: test_servers
+  become: yes
+
+  vars:
+    source_html: https://raw.githubusercontent.com/ovakhnenko/ansible/main/index.html
+    destin_html: /var/www/html
+
+  tasks:
+  - name: Install Apache Web Server
+    yum: name=httpd state=installed
+
+  - name: Download index.html
+    get_url:
+      url: "{{ source_html }}"
+      dest: "{{ destin_html }}"
+      mode: '0644'
+    notify: RestartApacheService
+
+  - name: Start Apache Web Server
+    service: name=httpd state=started enabled=yes
+
+  handlers:
+  - name: RestartApacheService
+    service: name=httpd state=restarted
+...

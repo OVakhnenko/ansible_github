@@ -1,0 +1,5 @@
+---
+# defaults file for deploy_apache_web
+
+source_html: https://raw.githubusercontent.com/ovakhnenko/ansible/main
+destin_html: /var/www/html

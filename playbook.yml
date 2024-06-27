@@ -1,0 +1,39 @@
+---
+- name: My Playbook with Variables
+  hosts: test_servers
+  become: yes
+
+  vars:
+    message1: Hallo
+    message2: Ansible!
+    secret: POIPOIPL3KJLKJ35LJ34L5KJ34LJ5L34JK53L4KJ
+
+  tasks:
+
+  - name: Print Secret
+    debug:
+      var: secret
+
+  - name: Print Var Secret
+    debug: 
+      msg: "Secret is ->{{ secret }}<-"
+
+  - name: Print Var Hash
+    debug: 
+      msg: "Hash is ->{{ hash }}<-"
+
+  - set_fact: hello_ansible="{{message1}} {{message2}}"
+
+  - name: Print Hello Ansible
+    debug:
+      var: hello_ansible
+
+  - name: Print Ansible Var (ansible all -m setup)
+    debug:
+      var: ansible_distribution
+
+  - shell: uptime
+    register: results
+
+  - debug:
+      var: results.stdout

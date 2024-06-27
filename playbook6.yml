@@ -1,0 +1,25 @@
+---
+- name: Simple Loop
+  hosts: linux_aml_test
+  become: yes
+
+  tasks:
+  - name: Hello to all
+    debug: msg="Hello {{ item }}"
+    loop:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+
+  - name: Until Loop
+    shell: echo -n X >> myfile.txt && cat myfile.txt
+    register: output
+    delay: 1
+    retries: 10
+    until: output.stdout.find("XXXXX") == false
+
+  - name: Print output
+    debug:
+      var: output.stdout

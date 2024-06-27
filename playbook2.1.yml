@@ -1,0 +1,9 @@
+---
+ - name: Delete Apache Web Server
+   hosts: test_servers
+   become: yes
+
+   tasks:
+   - name: Delete Apache Web Server
+     yum: name=httpd state=removed
+...

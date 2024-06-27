@@ -1,0 +1,21 @@
+[test_servers_db]
+linux_aml_test  ansible_host=172.31.43.2    hash=L6K7KJNRK2JN4KJ23NKJ23N4KJ3N4KJ23NK
+
+[test_servers_web]
+linux_ubu_test  ansible_host=172.31.24.138  hash=GFC4GF6CGFC5G54FC64GF5C6G45C6G4FC6C
+
+[prod_servers_db]
+linux_aml_prod  ansible_host=172.31.43.2    hash=NUN5U3N54U3N5U3N5U3HN5U3H4N5UH3N5UH
+
+[prod_servers_web]
+linux_ubu_prod  ansible_host=172.31.24.138  hash=CSD098C0SD8C09S8C09S8D098S09C80S98C
+
+[test_servers:children]
+test_servers_db
+test_servers_web
+
+[prod_servers:children]
+prod_servers_db
+prod_servers_web
+
+

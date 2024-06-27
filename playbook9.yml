@@ -1,0 +1,9 @@
+---
+- name: Install/Enable Apache Web Server & Download/Copy index.html
+  hosts: test_servers
+  become: yes
+
+  roles:
+    - { role: deploy_apache_web, when: ansible_system == "Linux"  }
+...
+
