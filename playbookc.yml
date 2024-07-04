@@ -1,0 +1,33 @@
+---
+- name: My Playbook
+  hosts: test_servers
+  any_errors_fatal: true
+  become: yes
+
+  tasks:
+
+  - name: Task Number 1
+    yum: name=git state=latest
+#    yum: name=HGFHDHHFJFKFHDGFJFJ state=latest
+#    ignore_errors: yes
+
+  - name: Task Number 2
+    shell: echo Code is XXCXXCXXC
+    register: results
+#    failed_when: "'XXCXXCXXC' in results.stdout"
+
+  - debug:
+      var: results
+
+  - name: Task Number 2
+    shell: echo Code is XXCXXCXXC
+    register: results
+#    failed_when: results.rc == 0
+
+  - name: Task Number 3
+    shell: echo Hello Ansible!
+    register: results
+
+  - debug:
+      var: results
+...
